@@ -11,20 +11,21 @@ type Action struct {
 }
 
 func (a *Action) Create(db *sql.DB, w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Create Action ")
+	fmt.Fprintf(w, "Create User\n")
 	model.CreateUserHandler(db, w, r)
-	fmt.Fprintf(w, "Usuario creado correctamente11")
 }
 
-func (a *Action) Login(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Login Action")
+func (a *Action) Login(db *sql.DB, w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Login Action\n")
+	model.LoginHandler(db, w, r)
 }
 
 func (a *Action) Logout(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Logout Action")
+	model.LogoutHandler(w, r)
 }
 
-func (a *Action) Update(w http.ResponseWriter, r *http.Request) {
+func (a *Action) Update(db *sql.DB, w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Update Action")
 }
 

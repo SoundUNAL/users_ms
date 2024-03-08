@@ -33,8 +33,8 @@ func loadActionRoutes(db *sql.DB, router chi.Router) {
 	actionHandler := &handler.Action{}
 
 	router.Post("/signup", dbInjector(db, actionHandler.Create))
-	router.Post("/login", actionHandler.Login)
+	router.Post("/login", dbInjector(db, actionHandler.Login))
 	router.Get("/logout", actionHandler.Logout)
-	router.Put("/{id}", actionHandler.Update)
+	router.Put("/{id}", dbInjector(db, actionHandler.Update))
 	router.Delete("/{id}", actionHandler.Delete)
 }

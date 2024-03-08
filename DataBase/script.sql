@@ -21,7 +21,7 @@ USE `soundunal_users_db` ;
 DROP TABLE IF EXISTS `soundunal_users_db`.`Role` ;
 
 CREATE TABLE IF NOT EXISTS `soundunal_users_db`.`Role` (
-  `idRol` INT NOT NULL,
+  `idRol` INT AUTO_INCREMENT NOT NULL,
   `rol` VARCHAR(45) NOT NULL,
   `description` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`idRol`))
@@ -35,10 +35,11 @@ COMMENT = 'Rol';
 DROP TABLE IF EXISTS `soundunal_users_db`.`User` ;
 
 CREATE TABLE IF NOT EXISTS `soundunal_users_db`.`User` (
-  `idUser` INT NOT NULL, 
+  `idUser` INT AUTO_INCREMENT NOT NULL, 
   `name` VARCHAR(45) NOT NULL,
   `lastname` VARCHAR(45) NOT NULL,
   `username` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `phone` INT NOT NULL,
   `birthday` DATE NOT NULL,

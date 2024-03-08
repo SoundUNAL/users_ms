@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"time"
 
+	"users/utils"
 	//"users/application"
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -15,6 +16,7 @@ type User struct {
 	Name      string    `json:"name"`
 	LastName  string    `json:"lastname"`
 	Username  string    `json:"username"`
+	Password  string    `json:"password"`
 	Email     string    `json:"email"`
 	Phone     string    `json:"phone"`
 	Birthday  time.Time `json:"birthday"`
@@ -31,26 +33,19 @@ func CreateUserHandler(db *sql.DB, w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-
-	// db, err := sql.Open("mysql", "root:madlies@tcp(127.0.0.1:3306)/soundunal_users_db")
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-
-	// Verificar la conexión a MySQL
-	// err = db.Ping()
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-	//fmt.Fprintf(w, "Usuario creado correctamente")
-	//fmt.Fprintf(w, "Conexión a la base de datos exitosa")
-
 	// Establecer la fecha y hora actual
 	user.CreatedAt = time.Now()
 
+	//Cifrar la contraseña
+	user.Password = utils.HashPassword(user.Password)
+
+	if user.Role != "2" && user.Role != "3" {
+		fmt.Fprintf(w, "Invalid Data")
+		return
+	}
 	// Insertar el nuevo usuario en la base de datos
-	_, err = db.Exec("INSERT INTO User (name, lastname, username, email, phone, birthday, idRol, lastconnection) VALUES ( ?, ?, ?, ?, ?, ?, ? , ?)",
-		user.Name, user.LastName, user.Username, user.Email, user.Phone, user.Birthday, user.Role, user.CreatedAt)
+	_, err = db.Exec("INSERT INTO User (name, lastname, username, password,  email, phone, birthday, idRol, lastconnection) VALUES ( ?, ?, ?, ?,?, ?, ?, ? , ?)",
+		user.Name, user.LastName, user.Username, user.Password, user.Email, user.Phone, user.Birthday, user.Role, user.CreatedAt)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
