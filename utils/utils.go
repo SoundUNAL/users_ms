@@ -3,7 +3,10 @@ package utils
 import (
 	"crypto/sha256"
 	"encoding/hex"
+	"strconv"
 	"time"
+
+	"strings"
 
 	"github.com/dgrijalva/jwt-go"
 )
@@ -44,4 +47,26 @@ func HashPassword(password string) string {
 	hashedPassword := hex.EncodeToString(hashed)
 
 	return hashedPassword
+}
+
+func SinceUINTtoText(since []uint8) string {
+	texto := ""
+	for _, v := range since {
+		texto += " "
+		texto += strconv.Itoa(int(v))
+	}
+
+	//fmt.Println("Texto:", texto)
+	partes := strings.Split(texto, " ")
+	//fmt.Println("Partes:", partes)
+	partes = partes[1:]
+
+	text := ""
+	for _, valor := range partes {
+		valor, _ := strconv.Atoi(valor)
+		caracter := string(rune(valor))
+		text += caracter
+	}
+
+	return text
 }

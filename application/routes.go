@@ -36,5 +36,6 @@ func loadActionRoutes(db *sql.DB, router chi.Router) {
 	router.Post("/login", dbInjector(db, actionHandler.Login))
 	router.Get("/logout", actionHandler.Logout)
 	router.Put("/{id}", dbInjector(db, actionHandler.Update))
-	router.Delete("/{id}", actionHandler.Delete)
+	router.Delete("/{id}", dbInjector(db, actionHandler.Delete))
+	router.Get("/{id}", dbInjector(db, actionHandler.GetInfo))
 }

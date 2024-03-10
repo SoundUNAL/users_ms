@@ -57,6 +57,13 @@ func LoginHandler(db *sql.DB, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	query := "UPDATE User SET  lastconnection = ? WHERE Username = ?"
+	_, err = db.Exec(query, time.Now(), user.Username)
+
+	if err != nil {
+		http.Error(w, "Error al actualizar el campo del usuario en la base de datos", http.StatusInternalServerError)
+		return
+	}
 	// Generar un token JWT si las credenciales son válidas
 	tokenString, err := utils.GenerateJWT(authenticatedUser.Username)
 	if err != nil {
