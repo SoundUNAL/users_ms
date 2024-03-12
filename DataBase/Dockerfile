@@ -2,10 +2,10 @@
 FROM mysql:5.7
 
 # Definimos las variables de entorno para la configuración de MySQL
-ENV MYSQL_ROOT_PASSWORD=supersecurepassword1234
+ENV MYSQL_ROOT_PASSWORD=madlies
 ENV MYSQL_DATABASE=users_db
 ENV MYSQL_USER=userdb
-ENV MYSQL_PASSWORD=supersecurepassworduser
+ENV MYSQL_PASSWORD=madlies
 
 # Exponemos el puerto 3306 para que se pueda acceder a la base de datos MySQL
 EXPOSE 3306
