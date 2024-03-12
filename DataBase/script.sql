@@ -28,6 +28,13 @@ CREATE TABLE IF NOT EXISTS `soundunal_users_db`.`Role` (
 ENGINE = InnoDB
 COMMENT = 'Rol';
 
+-- INSERTING ESTABLISHED ROLES
+INSERT INTO `soundunal_users_db`.`Role`(rol, description)
+VALUES
+('Artista', 'Este usuario puede subir canciones'),
+('Admin', 'Este usuario puede administrar'),
+('Usuario', 'Este usuario puede escuchar musica');
+
 
 -- -----------------------------------------------------
 -- Table `soundunal_users_db`.`User`
