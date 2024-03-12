@@ -1,5 +1,5 @@
-# Utilizamos la imagen base de MySQL 5.7
-FROM mysql:5.7
+# Utilizamos la imagen base de MySQL 8.0
+FROM mysql:8.0
 
 # Definimos las variables de entorno para la configuración de MySQL
 ENV MYSQL_ROOT_PASSWORD=madlies
