@@ -14,7 +14,7 @@ RUN go mod download
 # https://docs.docker.com/reference/dockerfile/#copy
 
 # Build
-RUN  go build -o /userMS
+RUN  go build -o userMS
 
 EXPOSE 8080
 
