@@ -1,5 +1,5 @@
 # Utilizamos la imagen base de MySQL 5.7
-FROM mysql:latest
+FROM mysql:5.7
 
 # Definimos las variables de entorno para la configuración de MySQL
 ENV MYSQL_ROOT_PASSWORD=supersecurepassword1234
