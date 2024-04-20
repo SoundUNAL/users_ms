@@ -20,9 +20,19 @@ type App struct {
 	db     *sql.DB
 }
 
+
 func New() *App {
 
-	db, err := sql.Open("mysql", "root:madlies@tcp(127.0.0.1:3306)/soundunal_users_db")
+	// Conexcion wilches 
+	//db, err := sql.Open("mysql", "root:madlies@tcp(127.0.0.1:3306)/soundunal_users_db")
+	
+	// Conexion manuel (Docker-Compose)
+	// Go se intenta conectar antes de que inicie la base de datos
+	// Se obliga a go a esperar antes de que se conecte a la base de datos
+
+	time.Sleep(20 * time.Second)
+	db, err := sql.Open("mysql", "root:madlies@tcp(mysql-docker:3306)/soundunal_users_db")
+
 	if err != nil {
 
 		log.Fatal(err)

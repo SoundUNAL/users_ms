@@ -1,0 +1,28 @@
+name : user_ms
+version: '3.8'
+services:
+  go-app:
+    build:
+      context: .
+      dockerfile: Dockerfile-go
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql-docker
+    networks:
+      - sound-user
+
+  mysql-docker:
+    build:
+      context: .
+      dockerfile: Dockerfile-mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    networks:
+      - sound-user
+
+networks:
+  sound-user: 
+    driver: bridge 
+  

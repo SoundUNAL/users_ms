@@ -11,7 +11,7 @@ ENV MYSQL_PASSWORD=madlies
 EXPOSE 3306
 
 # Copiamos el script SQL al contenedor
-COPY script.sql /docker-entrypoint-initdb.d/
+COPY DataBase/script.sql /docker-entrypoint-initdb.d/
 
 # El script.sql se ejecutará automáticamente al iniciar el contenedor
 
