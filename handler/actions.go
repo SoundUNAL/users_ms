@@ -25,6 +25,11 @@ func (a *Action) Login(db *sql.DB, w http.ResponseWriter, r *http.Request) {
 	model.LoginHandler(db, w, r)
 }
 
+func (a *Action) GetId(db *sql.DB, w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Get User ID\n")
+	model.GetUserIDHandler(db, w, r)
+}
+
 func (a *Action) Logout(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Logout Action")
 	model.LogoutHandler(w, r)
@@ -40,3 +45,4 @@ func (a *Action) Delete(db *sql.DB, w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Delete Action\n")
 	model.DeleteUserHandler(db, w, r)
 }
+
