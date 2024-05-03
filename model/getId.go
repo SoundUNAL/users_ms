@@ -30,6 +30,7 @@ func  GetUserIDHandler(db *sql.DB, w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(w, "Error al obtener la información del usuario de la base de datos", http.StatusInternalServerError)
 		println(err.Error())
+		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 
