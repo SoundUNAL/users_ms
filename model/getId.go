@@ -4,8 +4,6 @@ import (
 	"database/sql"
 	"encoding/json"
 	"net/http"
-	"users/utils"
-
 	"github.com/go-chi/chi/v5"
 )
 
